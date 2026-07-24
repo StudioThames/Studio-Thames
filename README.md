@@ -1,67 +1,51 @@
-[README.md](https://github.com/user-attachments/files/30327212/README.md)
 # Studio Thames website
 
-A complete, responsive portfolio for GitHub Pages. No framework, build step, or paid software is required.
+A complete, responsive portfolio using Massaquoi Thames' supplied photography, commercial work, and two films. No framework, build step, or paid software is required.
 
 ## Quick start
 
 1. Unzip this folder.
 2. Open `index.html` in a browser to preview it.
-3. Replace the sample images using the filenames below.
-4. Upload the contents of this folder to the root of your GitHub repository.
-5. In GitHub, open **Settings → Pages**, choose **Deploy from a branch**, select `main` and `/ (root)`, then save.
+3. Upload the website files to the root of your GitHub repository.
+4. In GitHub, open **Settings → Pages**, choose **Deploy from a branch**, select `main` and `/ (root)`, then save.
 
-## Replace the sample images
+## Your integrated images
 
-Add your files using these exact names:
+The supplied originals were preserved. Web-optimized copies were created inside the site:
 
 ```text
-images/
-├── hero/
-│   └── hero-landscape.jpg
-├── portfolio/
-│   ├── dunes.jpg
-│   ├── mountain-layers.jpg
-│   ├── outdoor-product.jpg
-│   └── snow-red-rock.jpg
-├── motion/
-│   └── boat-circle-poster.jpg
-└── about/
-    └── marcus-thames.jpg
+images/hero/snowy-sunset.webp
+images/drone/coastline-above.webp
+images/drone/lakeshore-dusk.webp
+images/portfolio/blue-ridge-layers.webp
+images/portfolio/desert-gold.webp
+images/portfolio/desert-ridges.webp
+images/portfolio/dune-portrait.webp
+images/portfolio/dune-wind.webp
+images/portfolio/mountain-haze.webp
+images/portfolio/snow-canyon.webp
+images/portfolio/snow-mountain-range.webp
+images/portfolio/snow-red-rock.webp
+images/portfolio/wild-grass.webp
 ```
 
-Then open `style.css` and replace these five remote image URLs:
+All are already connected to the page.
 
-- `.hero-image` → `url("images/hero/hero-landscape.jpg")`
-- `.film-poster` → `url("images/motion/boat-circle-poster.jpg")`
-- `.about-image` → `url("images/about/marcus-thames.jpg")`
+## Integrated film
 
-For the four portfolio images, open `index.html` and replace each remote URL inside `--story-image` with its matching local path. Comments directly above each card show the exact filename.
+The public Motion section currently contains:
 
-For best speed, export images as JPG or WebP, around 2000–2400 pixels wide and usually under 1 MB each.
+- `videos/winter-from-above.mp4` — about 22 MB
 
-## Add the Boat Circle video
+Winter From Above is ready for GitHub. Lake Michigan has been intentionally left out of the public build because its original is about 320 MB. It can be added later after exporting a web copy named `lake-michigan-web.mp4`:
 
-Put the compressed file at `videos/boat-circle.mp4`. For a fast-loading website, keep it under roughly 20 MB, remove audio if it is only a background, and export H.264 MP4.
+- H.264 MP4
+- 1920 × 1080
+- 8–12 Mbps target bitrate
+- AAC audio or no audio
+- Aim for under 100 MB; under 40 MB is better
 
-To turn the Motion card into a video, replace the `<button class="film-card"...>...</button>` block in `index.html` with:
-
-```html
-<div class="film-card reveal">
-  <video controls preload="metadata" poster="images/motion/boat-circle-poster.jpg">
-    <source src="videos/boat-circle.mp4" type="video/mp4">
-    Your browser does not support embedded video.
-  </video>
-</div>
-```
-
-Then add this to the bottom of `style.css`:
-
-```css
-.film-card video { width:100%; height:100%; min-height:650px; object-fit:cover; display:block; }
-```
-
-For a large high-resolution film, Vimeo or YouTube embedding will load faster than storing it on GitHub.
+It can then be added as a second Motion card or uploaded to Vimeo or YouTube and embedded.
 
 ## Make the contact form send messages
 
