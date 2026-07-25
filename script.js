@@ -23,7 +23,67 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
 
-document.addEventListener("keydown", (event) => { if (event.key === "Escape") setMenu(false); });
+const lightboxItems = [...document.querySelectorAll("[data-lightbox]")];
+const lightbox = document.querySelector("[data-lightbox-dialog]");
+const lightboxImage = lightbox.querySelector("[data-lightbox-image]");
+const lightboxCaption = lightbox.querySelector("[data-lightbox-caption]");
+const lightboxCount = lightbox.querySelector("[data-lightbox-count]");
+let lightboxIndex = 0;
+let lightboxReturnFocus = null;
+let touchStartX = 0;
+
+function showLightboxItem(index) {
+  lightboxIndex = (index + lightboxItems.length) % lightboxItems.length;
+  const item = lightboxItems[lightboxIndex];
+  lightboxImage.src = item.dataset.src;
+  lightboxImage.alt = item.getAttribute("aria-label").replace(/^Enlarge\s+/i, "");
+  lightboxCaption.textContent = item.dataset.caption;
+  lightboxCount.textContent = `${lightboxIndex + 1} / ${lightboxItems.length}`;
+}
+
+function openLightbox(index, trigger) {
+  lightboxReturnFocus = trigger;
+  showLightboxItem(index);
+  lightbox.hidden = false;
+  body.classList.add("modal-open");
+  lightbox.querySelector("[data-lightbox-close]").focus();
+}
+
+function closeLightbox() {
+  lightbox.hidden = true;
+  body.classList.remove("modal-open");
+  lightboxImage.src = "";
+  lightboxReturnFocus?.focus();
+}
+
+lightboxItems.forEach((item, index) => {
+  item.addEventListener("click", () => openLightbox(index, item));
+  item.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openLightbox(index, item);
+    }
+  });
+});
+
+lightbox.querySelector("[data-lightbox-close]").addEventListener("click", closeLightbox);
+lightbox.querySelector("[data-lightbox-prev]").addEventListener("click", () => showLightboxItem(lightboxIndex - 1));
+lightbox.querySelector("[data-lightbox-next]").addEventListener("click", () => showLightboxItem(lightboxIndex + 1));
+lightbox.addEventListener("click", (event) => { if (event.target === lightbox) closeLightbox(); });
+lightboxImage.addEventListener("touchstart", (event) => { touchStartX = event.changedTouches[0].clientX; }, { passive: true });
+lightboxImage.addEventListener("touchend", (event) => {
+  const distance = event.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(distance) > 45) showLightboxItem(lightboxIndex + (distance < 0 ? 1 : -1));
+}, { passive: true });
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    if (!lightbox.hidden) closeLightbox();
+    else setMenu(false);
+  }
+  if (!lightbox.hidden && event.key === "ArrowLeft") showLightboxItem(lightboxIndex - 1);
+  if (!lightbox.hidden && event.key === "ArrowRight") showLightboxItem(lightboxIndex + 1);
+});
 
 const form = document.querySelector("[data-contact-form]");
 form.addEventListener("submit", (event) => {
