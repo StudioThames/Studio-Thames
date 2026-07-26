@@ -23,6 +23,37 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
 
+const film = document.querySelector(".film-card video");
+const audioToggle = document.querySelector("[data-audio-toggle]");
+const audioLabel = document.querySelector("[data-audio-label]");
+
+function updateAudioButton() {
+  const soundIsOn = !film.muted && film.volume > 0 && !film.paused;
+  audioLabel.textContent = soundIsOn ? "Sound on" : "Play with sound";
+  audioToggle.setAttribute("aria-label", soundIsOn ? "Mute film" : "Play film with sound");
+}
+
+audioToggle.addEventListener("click", async () => {
+  if (!film.paused && !film.muted && film.volume > 0) {
+    film.muted = true;
+  } else {
+    film.muted = false;
+    film.volume = 1;
+    try {
+      await film.play();
+    } catch {
+      audioLabel.textContent = "Press play, then sound";
+      return;
+    }
+  }
+  updateAudioButton();
+});
+
+film.addEventListener("play", updateAudioButton);
+film.addEventListener("pause", updateAudioButton);
+film.addEventListener("volumechange", updateAudioButton);
+updateAudioButton();
+
 const lightboxItems = [...document.querySelectorAll("[data-lightbox]")];
 const lightbox = document.querySelector("[data-lightbox-dialog]");
 const lightboxImage = lightbox.querySelector("[data-lightbox-image]");
