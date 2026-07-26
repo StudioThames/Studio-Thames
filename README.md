@@ -1,6 +1,6 @@
-# Studio Thames website
+# Thames Field and Films website
 
-A complete, responsive portfolio using Massaquoi Thames' supplied photography, commercial work, and two films. No framework, build step, or paid software is required.
+A complete, responsive portfolio using Massaquoi Thames' supplied photography, commercial work, and films. No framework, build step, or paid software is required.
 
 ## Quick start
 
@@ -56,7 +56,7 @@ GitHub Pages displays HTML but cannot process forms itself. A simple free option
 3. In `index.html`, find `<form class="contact-form"... action="#">`.
 4. Replace `#` with your Formspree URL.
 
-Also replace `hello@studiothames.com`, Instagram, and Vimeo links with your real details.
+Also replace `hello@thamesfieldandfilms.com`, Instagram, and Vimeo links with your real details.
 
 ## Editing guide
 
