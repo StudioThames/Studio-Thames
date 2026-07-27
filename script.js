@@ -28,30 +28,25 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
 
 const film = document.querySelector(".film-card video");
-const filmAudio = document.querySelector("[data-film-audio]");
 const audioToggle = document.querySelector("[data-audio-toggle]");
 const audioLabel = document.querySelector("[data-audio-label]");
-let separateAudioEnabled = false;
 
 function updateAudioButton() {
-  const soundIsOn = separateAudioEnabled && !filmAudio.paused && filmAudio.volume > 0;
+  const soundIsOn = !film.muted && film.volume > 0;
   audioLabel.textContent = soundIsOn ? "Sound on" : "Play with sound";
   audioToggle.setAttribute("aria-label", soundIsOn ? "Mute film" : "Play film with sound");
 }
 
 audioToggle.addEventListener("click", async () => {
-  if (separateAudioEnabled && !filmAudio.paused) {
-    filmAudio.pause();
-    separateAudioEnabled = false;
-  } else {
-    separateAudioEnabled = true;
+  if (!film.muted && film.volume > 0) {
     film.muted = true;
-    filmAudio.volume = 1;
-    filmAudio.currentTime = film.currentTime;
+  } else {
+    film.muted = false;
+    film.volume = 1;
     try {
-      await Promise.all([film.play(), filmAudio.play()]);
+      await film.play();
     } catch {
-      separateAudioEnabled = false;
+      film.muted = true;
       audioLabel.textContent = "Tap again for sound";
       return;
     }
@@ -59,32 +54,10 @@ audioToggle.addEventListener("click", async () => {
   updateAudioButton();
 });
 
-film.addEventListener("play", () => {
-  if (separateAudioEnabled) {
-    filmAudio.currentTime = film.currentTime;
-    filmAudio.play().catch(() => {});
-  }
-  updateAudioButton();
-});
-film.addEventListener("pause", () => {
-  if (separateAudioEnabled) filmAudio.pause();
-  updateAudioButton();
-});
-film.addEventListener("seeking", () => {
-  if (separateAudioEnabled) filmAudio.currentTime = film.currentTime;
-});
-film.addEventListener("timeupdate", () => {
-  if (separateAudioEnabled && Math.abs(filmAudio.currentTime - film.currentTime) > 0.35) {
-    filmAudio.currentTime = film.currentTime;
-  }
-});
-film.addEventListener("ended", () => {
-  filmAudio.pause();
-  filmAudio.currentTime = 0;
-  separateAudioEnabled = false;
-  updateAudioButton();
-});
-filmAudio.addEventListener("volumechange", updateAudioButton);
+film.addEventListener("play", updateAudioButton);
+film.addEventListener("pause", updateAudioButton);
+film.addEventListener("volumechange", updateAudioButton);
+film.addEventListener("ended", updateAudioButton);
 updateAudioButton();
 
 const lightboxItems = [...document.querySelectorAll("[data-lightbox]")];

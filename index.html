@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=audio-fix-2">
-  <script src="script.js?v=audio-fix-2" defer></script>
+  <link rel="stylesheet" href="style.css?v=audio-fix-3">
+  <script src="script.js?v=audio-fix-3" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -175,12 +175,10 @@
       </div>
       <div class="motion-grid motion-grid-single">
         <div class="film-card reveal">
-          <video controls playsinline preload="metadata" poster="images/hero/snowy-sunset.webp" aria-label="Where the Earth Remembers film">
+          <video controls playsinline webkit-playsinline preload="metadata" poster="images/hero/snowy-sunset.webp" aria-label="Where the Earth Remembers film">
             <source src="videos/where-the-earth-remembers.mp4" type="video/mp4">
             Your browser does not support embedded video.
           </video>
-          <!-- Separate audio playback is synchronized in script.js for reliable sound on mobile browsers. -->
-          <audio data-film-audio preload="metadata" src="videos/where-the-earth-remembers.mp4"></audio>
           <button class="audio-toggle" type="button" data-audio-toggle aria-label="Play film with sound">
             <span aria-hidden="true">♪</span>
             <span data-audio-label>Play with sound</span>
