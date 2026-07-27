@@ -32,12 +32,32 @@ const audioToggle = document.querySelector("[data-audio-toggle]");
 const audioLabel = document.querySelector("[data-audio-label]");
 
 function updateAudioButton() {
+  if (film.paused || film.ended) {
+    audioLabel.textContent = "Play with sound";
+    audioToggle.setAttribute("aria-label", "Play film with sound");
+    return;
+  }
+
   const soundIsOn = !film.muted && film.volume > 0;
   audioLabel.textContent = soundIsOn ? "Sound on" : "Play with sound";
   audioToggle.setAttribute("aria-label", soundIsOn ? "Mute film" : "Play film with sound");
 }
 
 audioToggle.addEventListener("click", async () => {
+  if (film.paused || film.ended) {
+    film.muted = false;
+    film.volume = 1;
+    try {
+      await film.play();
+    } catch {
+      film.muted = true;
+      audioLabel.textContent = "Tap again for sound";
+      return;
+    }
+    updateAudioButton();
+    return;
+  }
+
   if (!film.muted && film.volume > 0) {
     film.muted = true;
   } else {
