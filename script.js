@@ -11,7 +11,11 @@ function setMenu(open) {
 
 navToggle.addEventListener("click", () => setMenu(!body.classList.contains("menu-open")));
 navLinks.forEach((link) => link.addEventListener("click", () => setMenu(false)));
-window.addEventListener("scroll", () => header.classList.toggle("scrolled", window.scrollY > 40), { passive: true });
+function updateHeader() {
+  header.classList.toggle("scrolled", window.scrollY > 40);
+}
+updateHeader();
+window.addEventListener("scroll", updateHeader, { passive: true });
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
@@ -24,34 +28,63 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
 
 const film = document.querySelector(".film-card video");
+const filmAudio = document.querySelector("[data-film-audio]");
 const audioToggle = document.querySelector("[data-audio-toggle]");
 const audioLabel = document.querySelector("[data-audio-label]");
+let separateAudioEnabled = false;
 
 function updateAudioButton() {
-  const soundIsOn = !film.muted && film.volume > 0 && !film.paused;
+  const soundIsOn = separateAudioEnabled && !filmAudio.paused && filmAudio.volume > 0;
   audioLabel.textContent = soundIsOn ? "Sound on" : "Play with sound";
   audioToggle.setAttribute("aria-label", soundIsOn ? "Mute film" : "Play film with sound");
 }
 
 audioToggle.addEventListener("click", async () => {
-  if (!film.paused && !film.muted && film.volume > 0) {
-    film.muted = true;
+  if (separateAudioEnabled && !filmAudio.paused) {
+    filmAudio.pause();
+    separateAudioEnabled = false;
   } else {
-    film.muted = false;
-    film.volume = 1;
+    separateAudioEnabled = true;
+    film.muted = true;
+    filmAudio.volume = 1;
+    filmAudio.currentTime = film.currentTime;
     try {
-      await film.play();
+      await Promise.all([film.play(), filmAudio.play()]);
     } catch {
-      audioLabel.textContent = "Press play, then sound";
+      separateAudioEnabled = false;
+      audioLabel.textContent = "Tap again for sound";
       return;
     }
   }
   updateAudioButton();
 });
 
-film.addEventListener("play", updateAudioButton);
-film.addEventListener("pause", updateAudioButton);
-film.addEventListener("volumechange", updateAudioButton);
+film.addEventListener("play", () => {
+  if (separateAudioEnabled) {
+    filmAudio.currentTime = film.currentTime;
+    filmAudio.play().catch(() => {});
+  }
+  updateAudioButton();
+});
+film.addEventListener("pause", () => {
+  if (separateAudioEnabled) filmAudio.pause();
+  updateAudioButton();
+});
+film.addEventListener("seeking", () => {
+  if (separateAudioEnabled) filmAudio.currentTime = film.currentTime;
+});
+film.addEventListener("timeupdate", () => {
+  if (separateAudioEnabled && Math.abs(filmAudio.currentTime - film.currentTime) > 0.35) {
+    filmAudio.currentTime = film.currentTime;
+  }
+});
+film.addEventListener("ended", () => {
+  filmAudio.pause();
+  filmAudio.currentTime = 0;
+  separateAudioEnabled = false;
+  updateAudioButton();
+});
+filmAudio.addEventListener("volumechange", updateAudioButton);
 updateAudioButton();
 
 const lightboxItems = [...document.querySelectorAll("[data-lightbox]")];
