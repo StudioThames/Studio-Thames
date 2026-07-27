@@ -4,12 +4,13 @@ const navToggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelectorAll(".site-nav a");
 
 function setMenu(open) {
+  if (!navToggle) return;
   body.classList.toggle("menu-open", open);
   navToggle.setAttribute("aria-expanded", String(open));
   navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
 }
 
-navToggle.addEventListener("click", () => setMenu(!body.classList.contains("menu-open")));
+navToggle?.addEventListener("click", () => setMenu(!body.classList.contains("menu-open")));
 navLinks.forEach((link) => link.addEventListener("click", () => setMenu(false)));
 function updateHeader() {
   header.classList.toggle("scrolled", window.scrollY > 40);
