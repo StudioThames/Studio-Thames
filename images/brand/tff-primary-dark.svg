@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 520" role="img" aria-labelledby="title desc">
+  <title id="title">Thames Field and Films primary dark logo</title>
+  <desc id="desc">TFF monogram with mountain and wind lines beside the Thames Field and Films wordmark on charcoal.</desc>
+
+  <rect width="1400" height="520" fill="#101312"/>
+
+  <g transform="translate(72 84)">
+    <rect x="0" y="0" width="500" height="320" rx="24" fill="#101312" stroke="#b78a45" stroke-width="2"/>
+    <path d="M38 240 C100 196 160 194 214 226 C268 258 329 264 376 224 C410 196 446 199 462 215"
+          fill="none" stroke="#b78a45" stroke-width="8" stroke-linecap="round"/>
+    <path d="M38 270 C104 237 163 233 223 257 C284 283 353 286 410 254 C432 242 449 239 462 241"
+          fill="none" stroke="#71808a" stroke-width="4" stroke-linecap="round"/>
+    <g fill="none" stroke="#f3f1eb" stroke-width="14" stroke-linecap="square" stroke-linejoin="miter">
+      <path d="M48 69 H181 M114 69 V220"/>
+      <path d="M220 220 V69 H316 M220 138 H300"/>
+      <path d="M358 220 V69 H454 M358 138 H438"/>
+    </g>
+  </g>
+
+  <g transform="translate(650 125)">
+    <text x="0" y="78" fill="#f3f1eb" font-family="Georgia, 'Times New Roman', serif" font-size="82" letter-spacing="8">THAMES</text>
+    <line x1="3" y1="114" x2="645" y2="114" stroke="#71808a" stroke-width="2"/>
+    <text x="3" y="173" fill="#b78a45" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="600" letter-spacing="10">FIELD &amp; FILMS</text>
+    <text x="4" y="232" fill="#c8cbca" font-family="Arial, Helvetica, sans-serif" font-size="18" letter-spacing="3.8">STORIES SHAPED BY PLACE</text>
+    <text x="4" y="286" fill="#899194" font-family="Arial, Helvetica, sans-serif" font-size="15" letter-spacing="3">OUTDOOR PHOTOGRAPHY  &#8226;  FILM  &#8226;  AERIAL</text>
+  </g>
+</svg>

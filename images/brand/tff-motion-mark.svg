@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Thames Field and Films animated motion mark</title>
+  <desc id="desc">An animated TFF monogram appears as mountain and wind lines draw across a charcoal field.</desc>
+  <style>
+    .frame { animation: frame-in 3.8s ease-out both; }
+    .letter { opacity: 0; transform: translateY(14px); animation: letter-in 3.8s cubic-bezier(.2,.7,.2,1) both; }
+    .letter-f1 { animation-delay: .12s; }
+    .letter-f2 { animation-delay: .24s; }
+    .ridge { stroke-dasharray: 760; stroke-dashoffset: 760; animation: draw-ridge 3.8s ease-in-out .55s both; }
+    .wind { stroke-dasharray: 760; stroke-dashoffset: 760; animation: draw-wind 3.8s ease-in-out .78s both; }
+    .brand { opacity: 0; animation: brand-in 3.8s ease-out 1.35s both; }
+    @keyframes frame-in { 0% { opacity: 0; transform: scale(.96); } 18%,100% { opacity: 1; transform: scale(1); } }
+    @keyframes letter-in { 0%,12% { opacity: 0; transform: translateY(14px); } 34%,100% { opacity: 1; transform: translateY(0); } }
+    @keyframes draw-ridge { 0%,8% { stroke-dashoffset: 760; } 42%,100% { stroke-dashoffset: 0; } }
+    @keyframes draw-wind { 0%,8% { stroke-dashoffset: 760; } 44%,100% { stroke-dashoffset: 0; } }
+    @keyframes brand-in { 0%,8% { opacity: 0; transform: translateY(8px); } 30%,100% { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) {
+      .frame, .letter, .ridge, .wind, .brand { animation: none; opacity: 1; transform: none; stroke-dashoffset: 0; }
+    }
+  </style>
+
+  <rect width="1280" height="720" fill="#101312"/>
+  <g class="frame" transform="translate(390 92)">
+    <rect width="500" height="320" rx="24" fill="none" stroke="#b78a45" stroke-width="2"/>
+    <path class="ridge" d="M38 240 C100 196 160 194 214 226 C268 258 329 264 376 224 C410 196 446 199 462 215"
+          fill="none" stroke="#b78a45" stroke-width="8" stroke-linecap="round"/>
+    <path class="wind" d="M38 270 C104 237 163 233 223 257 C284 283 353 286 410 254 C432 242 449 239 462 241"
+          fill="none" stroke="#71808a" stroke-width="4" stroke-linecap="round"/>
+    <g fill="none" stroke="#f3f1eb" stroke-width="14" stroke-linecap="square" stroke-linejoin="miter">
+      <path class="letter" d="M48 69 H181 M114 69 V220"/>
+      <path class="letter letter-f1" d="M220 220 V69 H316 M220 138 H300"/>
+      <path class="letter letter-f2" d="M358 220 V69 H454 M358 138 H438"/>
+    </g>
+  </g>
+  <g class="brand" text-anchor="middle">
+    <text x="640" y="505" fill="#f3f1eb" font-family="Georgia, 'Times New Roman', serif" font-size="62" letter-spacing="8">THAMES</text>
+    <text x="640" y="558" fill="#b78a45" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="600" letter-spacing="8">FIELD &amp; FILMS</text>
+    <text x="640" y="609" fill="#899194" font-family="Arial, Helvetica, sans-serif" font-size="14" letter-spacing="3">OUTDOOR PHOTOGRAPHY  &#8226;  FILM  &#8226;  AERIAL</text>
+  </g>
+</svg>

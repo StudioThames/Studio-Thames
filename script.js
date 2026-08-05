@@ -145,9 +145,22 @@ document.addEventListener("keydown", (event) => {
 
 const form = document.querySelector("[data-contact-form]");
 form.addEventListener("submit", (event) => {
-  if (form.action.endsWith("#")) {
-    event.preventDefault();
-    form.querySelector(".form-status").textContent = "Your form is designed and ready. Connect Formspree using the README instructions to receive messages.";
-  }
+  event.preventDefault();
+  const data = new FormData(form);
+  const subject = `Project inquiry from ${data.get("name")}`;
+  const body = [
+    `Name: ${data.get("name")}`,
+    `Email: ${data.get("email")}`,
+    `Project type: ${data.get("project")}`,
+    `Desired date: ${data.get("desired-date") || "Not specified"}`,
+    `Project location: ${data.get("location")}`,
+    `Estimated budget: ${data.get("budget") || "Not specified"}`,
+    "",
+    "Project description:",
+    data.get("message")
+  ].join("\n");
+
+  form.querySelector(".form-status").textContent = "Opening your email app to finish sending the inquiry…";
+  window.location.href = `mailto:hello@thamesfieldandfilms.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 });
 document.querySelector("[data-year]").textContent = new Date().getFullYear();

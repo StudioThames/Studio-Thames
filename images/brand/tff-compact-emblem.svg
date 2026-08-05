@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="title desc">
+  <title id="title">Thames Field and Films hybrid emblem</title>
+  <desc id="desc">A compact dark TFF emblem with rolling mountain and wind lines.</desc>
+
+  <rect width="600" height="600" rx="132" fill="#101312"/>
+  <rect x="22" y="22" width="556" height="556" rx="114" fill="none" stroke="#b78a45" stroke-width="4"/>
+
+  <path d="M70 408 C145 355 217 354 282 393 C347 431 418 438 474 391 C511 360 547 366 561 378"
+        fill="none" stroke="#b78a45" stroke-width="10" stroke-linecap="round"/>
+  <path d="M70 448 C150 408 220 405 292 434 C365 464 446 467 516 428 C534 418 549 413 561 414"
+        fill="none" stroke="#71808a" stroke-width="5" stroke-linecap="round"/>
+
+  <g fill="none" stroke="#f3f1eb" stroke-width="18" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M82 145 H222 M152 145 V371"/>
+    <path d="M263 371 V145 H365 M263 247 H350"/>
+    <path d="M407 371 V145 H518 M407 247 H500"/>
+  </g>
+</svg>
