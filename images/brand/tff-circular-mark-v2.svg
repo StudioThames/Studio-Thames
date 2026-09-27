@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" role="img" aria-labelledby="title desc">
+  <title id="title">Thames Field and Films circular TFF mark</title>
+  <desc id="desc">A black circular field with a bronze ring, one ivory T overlapping two ivory Fs, and a bronze mountain ridge and flowing river.</desc>
+  <circle cx="300" cy="300" r="292" fill="#0b0d0c"/>
+  <circle cx="300" cy="300" r="286" fill="none" stroke="#b77943" stroke-width="10"/>
+  <!-- Exactly two high-contrast cinematic Fs, intentionally behind the central T. -->
+  <g fill="#f3efe4">
+    <path d="M120 210h151l5 51h-17c-7-22-22-29-52-29h-25v54h31c23 0 31-7 36-25h16v72h-16c-5-18-13-25-36-25h-31v49c0 20 8 28 33 31v16H116v-16c24-3 32-11 32-31V256c0-20-8-28-28-31z"/>
+    <path d="M329 210h151l-1 51h-17c-7-22-22-29-52-29h-25v54h31c23 0 31-7 36-25h16v72h-16c-5-18-13-25-36-25h-31v49c0 20 8 28 33 31v16h-99v-16c24-3 32-11 32-31V256c0-20-8-28-28-31z"/>
+  </g>
+  <!-- One dominant central T, drawn last to cover both Fs. -->
+  <path fill="#f3efe4" d="M171 132h258l10 70h-22c-10-32-29-43-72-43h-20v192c0 28 10 37 40 41v18H235v-18c30-4 40-13 40-41V159h-20c-43 0-62 11-72 43h-22z"/>
+  <!-- Mountain ridge and river are part of the mark, not a photo overlay. -->
+  <path fill="#b77943" d="M72 414l91-63 36 25 101-91 109 97 32-29 87 62-87-42-32 27-109-85-101 84-36-25z"/>
+  <path fill="#b77943" d="M88 439c90-28 177-28 260-2 44 14 97 27 164 27-61 5-119-1-173-14-79-19-163-17-251 6z"/>
+  <path fill="#b77943" d="M112 467c80-17 145-12 194 13 28 14 81 25 158 32-92 1-160-7-204-24-38-15-87-18-148-9 39-15 64-28 64-39 0-8-21-14-64-17 73-6 120 2 140 21 17 17 0 34-52 51 56-9 104-7 144 7-66-6-119-16-158-30-31-11-72-13-124-5z"/>
+</svg>
