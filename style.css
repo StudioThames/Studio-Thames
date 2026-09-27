@@ -30,7 +30,7 @@
 /* Thames Field & Films brand identity */
 .brand-mark{display:none}
 .brand-emblem{width:2.7rem;height:2.7rem;object-fit:contain;flex:0 0 auto}
-.hero-watermark{position:absolute;z-index:1;top:clamp(6.5rem,12vh,9rem);right:clamp(1.5rem,5vw,5rem);width:clamp(7.5rem,16vw,13rem);height:auto;opacity:.08;pointer-events:none;user-select:none}
+.hero-watermark{position:absolute;z-index:1;top:clamp(6.75rem,11vh,8.25rem);right:clamp(1.5rem,4vw,4rem);width:clamp(5.5rem,9vw,8.5rem);height:auto;opacity:.045;pointer-events:none;user-select:none}
 .footer-brand{display:block;width:max-content;max-width:100%}
-.footer-signature{display:block;width:clamp(12rem,20vw,17rem);max-width:100%;height:auto}
-@media(max-width:800px){.brand-emblem{width:2.4rem;height:2.4rem}.brand>span{font-size:.78rem}.hero-watermark{width:7rem;top:6.5rem;right:1.2rem;opacity:.07}.footer-brand{margin-inline:auto}}
+.footer-signature{display:block;width:clamp(16rem,28vw,23rem);max-width:100%;height:auto}
+@media(max-width:800px){.brand-emblem{width:2.4rem;height:2.4rem}.brand>span{font-size:.78rem}.hero-watermark{width:5.25rem;top:6.25rem;right:1rem;opacity:.04}.footer-brand{margin-inline:auto}}
